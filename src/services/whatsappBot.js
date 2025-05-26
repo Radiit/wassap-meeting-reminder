@@ -44,25 +44,29 @@ class WhatsAppBot {
 
   async handleCommand(message) {
     const command = message.body.toLowerCase();
+    console.log('handleCommand dipanggil:', command);
     if (command.includes('/help')) {
+      console.log('Memanggil handleHelpCommand');
       await this.handleHelpCommand(message);
     } else if (command.includes('/reminder')) {
+      console.log('Memanggil handleReminderCommand');
       await this.handleReminderCommand(message);
     }
   }
-
+  
   async handleHelpCommand(message) {
+    console.log('handleHelpCommand dipanggil, akan reply...');
     const helpMessage = `🤖 *BANTUAN PENGGUNAAN BOT CTS BANGET *\n\n` +
       `*Perintah yang tersedia:*\n` +
       `1. @bot /help - Menampilkan bantuan ini\n` +
-      `2. @bot ingetin untuk [judul meeting] jam [waktu] tanggal [tanggal]\n\n` +
+      `2. @bot /reminder ingetin untuk [judul meeting] jam [waktu] tanggal [tanggal]\n\n` +
       `*Contoh penggunaan:*\n` +
-      `@bot ingetin untuk meeting pak bon jam 2 tanggal 14 november 2025\n\n` +
+      `@bot /reminder ingetin untuk meeting pak bon jam 2 tanggal 14 november 2025\n\n` +
       `*Catatan:*\n` +
       `- Bot akan mengirim pengingat 1 hari dan 30 menit sebelum jadwal\n` +
       `- Pastikan format tanggal dan waktu jelas dan benar\n` +
       `- Bot akan mengirim konfirmasi setelah menerima perintah`;
-
+  
     await message.reply(helpMessage);
   }
 
